@@ -20,36 +20,7 @@ const Nav = (props) => {
           </NavLink>
         </li>
         
-        <li>
-          <NavLink to="/newusers">
-           NEW USERS
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users">
-            USERS
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/newArticles">
-            NEW ARTICLES
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/articles">
-            ARTICLES
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/commentaires">
-            COMMENTAIRES
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/postcommentaires">
-            NEWCOMMENTAIRES
-          </NavLink>
-        </li>
+
         <li>
           <NavLink to="/login">
             Login
@@ -58,6 +29,16 @@ const Nav = (props) => {
         <li>
           <NavLink to="/upload">
             Upload
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/addProducts">
+            AddProducts
+          </NavLink>
+        </li>
+         <li>
+          <NavLink to="/getAllProducts">
+            Products List
           </NavLink>
         </li>
       </ul>

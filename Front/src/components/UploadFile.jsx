@@ -20,7 +20,7 @@ const UploadFile = () => {
         // L'image
         dataFile.append('files', files[0], files[0].name)
         
-        axios.post(`${BASE_URL}/uploadFile`, dataFile)
+        axios.post(`${BASE_URL}/uploadFiles`, dataFile)
         .then((res)=> {
             console.log(res)
             res.data.response && console.log('succesfully upload');
