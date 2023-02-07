@@ -9,6 +9,7 @@ import UploadFile from "./components/UploadFile.jsx"
 import Nav from "./components/Nav.jsx"
 import AddProducts from "./components/AddProducts.jsx"
 import GetAllProducts from "./components/GetAllProducts.jsx"
+import EditProducts from "./components/EditProducts.jsx"
 import Error404 from "./components/Error404.jsx"
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/upload" element = {<UploadFile />} />
                 <Route path="/addProducts" element = {<AddProducts />} />
                 <Route path="/getAllProducts" element = {<GetAllProducts />} />
+                <Route path ="/editProducts/:id" element = {<EditProducts />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
         </BrowserRouter>
