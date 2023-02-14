@@ -8,14 +8,14 @@ const UploadFile = () => {
     
     const submit = (e) => {
         e.preventDefault()
-        const username = "Pseudo"
+        
         const dataFile = new FormData();
-        const files = {...e.target.avatar.files};
+        const files = {...e.target.image.files};
         
         console.log(files)
         
         // ajouter d'autre input au formulaire
-        dataFile.append('username', username)
+        // dataFile.append('username', username)
         
         // L'image
         dataFile.append('files', files[0], files[0].name)
@@ -32,10 +32,11 @@ const UploadFile = () => {
     
     return (
         <Fragment>
-            <h1>Ajouter/Modifier l'avatar</h1>
+            <h1>Ajouter image</h1>
             <form onSubmit={submit} encType="multipart/form-data">
-                <label name='avatar'>
-                    <input type='file' name='avatar'/>
+                <label name='image'>
+                
+                    <input type='file' name='image'/>
                     <input type='submit' value='Submit'/>
                 </label>
             </form>
@@ -44,3 +45,5 @@ const UploadFile = () => {
 }
 
 export default UploadFile
+
+// <input type="text" name="caption" onChange={handleChange} value={productsData.caption} />

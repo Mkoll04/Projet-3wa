@@ -1,11 +1,19 @@
-import {pool} from "../config/database.js"
+import BDD from "../model/BDD.js"
+import Products from "../model/Products.js"
 
-export default (req, res) => {
-    const {id} = req.body
-    const sql = "SELECT * FROM products WHERE id = ?"
-    const paramsSQL = [id]
-    pool.query(sql,paramsSQL,(err, result) => {
-        if(err) throw err
-        res.json({result})
-    })
+
+export default async (req, res) => {
+     const {id} = req.body
+    
+    try {
+        const myBDD = new BDD()
+        const products = new Products(myBDD)
+        const data = await products.getById({id})
+        res.json({data})
+    }catch(err) {
+        console.log(err);
+        res.sendStatus(500)
+    }
 }
+
+
