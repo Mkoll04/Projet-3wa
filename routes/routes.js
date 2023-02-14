@@ -9,6 +9,7 @@ import getProductsByIDController from "../controllers/getProductsByIDController.
 import deleteProductsByIDController from "../controllers/deleteProductsByIDController.js"
 import getCategoriesController from "../controllers/getCategoriesController.js"
 import middlewareUploadFile from "../controllers/middlewareUploadFile.js"
+import editPicturesController from "../controllers/editPicturesController.js"
 
 const router = express.Router();
 
@@ -20,5 +21,6 @@ router.post("/editProducts", editProductsController)
 router.post("/getProductsByID", getProductsByIDController)
 router.post("/deleteProductsByID", deleteProductsByIDController)
 router.get("/getCategories", getCategoriesController)
+router.post("/editPictures", middlewareUploadFile, editPicturesController)
 
 export default router;

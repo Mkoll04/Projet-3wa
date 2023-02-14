@@ -5,11 +5,11 @@ import {StoreContext} from "./context.js"*/
 import './App.css';
 import Home from "./components/Home.jsx"
 import Login from "./components/Login.jsx"
-import UploadFile from "./components/UploadFile.jsx"
 import Nav from "./components/Nav.jsx"
 import AddProducts from "./components/AddProducts.jsx"
 import GetAllProducts from "./components/GetAllProducts.jsx"
 import EditProducts from "./components/EditProducts.jsx"
+import EditPictures from "./components/EditPictures.jsx"
 import Error404 from "./components/Error404.jsx"
 
 function App() {
@@ -21,10 +21,10 @@ function App() {
             <Routes>
                 <Route path="/" element = {<Home />} />
                 <Route path="/login" element = {<Login />} />
-                <Route path="/upload" element = {<UploadFile />} />
                 <Route path="/addProducts" element = {<AddProducts />} />
                 <Route path="/getAllProducts" element = {<GetAllProducts />} />
                 <Route path ="/editProducts/:id" element = {<EditProducts />} />
+                <Route path ="/editPictures/:id" element = {<EditPictures />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
         </BrowserRouter>

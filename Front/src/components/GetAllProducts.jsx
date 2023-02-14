@@ -36,6 +36,7 @@ const GetAllProducts = () => {
                         <p>categories : {product.categorie} </p>
                         <button onClick={() => deleteProducts(product.id)}>Supprimer ce produit</button>
                         <p><NavLink to={`/editProducts/${product.id}`}>Modifier ce produit: "{product.name}"</NavLink></p>
+                        <p><NavLink to={`/editPictures/${product.id}`}>Modifier la photo</NavLink></p>
                     </div>
                 )
             })}

@@ -74,7 +74,7 @@ const AddProducts = () => {
         
         // L'image
         dataFile.append('files', files[0], files[0].name)
-        
+        console.log(files)
         console.log(dataFile)
         axios.post(`${BASE_URL}/addProducts`, dataFile)
         .then((res)=> {

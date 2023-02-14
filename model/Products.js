@@ -101,6 +101,19 @@ class Products {
     // const result = await asyncQuery(sqlPicture,[files])
     // res.json({result})
     }
+    
+    async editPictures ({url, caption, products_id}){
+        const sqlPicture ='UPDATE pictures SET url = ?, caption = ? WHERE products_id = ?'
+        const paramsSql = [url,caption,products_id]
+        try{
+            const result = await this.asyncQuery(sqlPicture,paramsSql)
+            return {result}
+        }catch(err){
+            console.log(err)
+            return err
+        }
+    }
+    
 }
 
 export default Products

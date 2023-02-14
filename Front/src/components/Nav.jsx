@@ -27,11 +27,6 @@ const Nav = (props) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/upload">
-            Upload
-          </NavLink>
-        </li>
-        <li>
           <NavLink to="/addProducts">
             AddProducts
           </NavLink>
