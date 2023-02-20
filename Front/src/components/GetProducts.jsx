@@ -4,7 +4,7 @@ import {useEffect, useContext} from "react"
 import {BASE_URL, BASE_IMAGE} from "../tools/constante.js"
 import {StoreContext} from "../tools/context.js"
 
-const GetAllProducts = () => {
+const GetProducts = () => {
     
     // const [getProducts, setGetProducts] = useState([])
     const [state, dispatch] = useContext(StoreContext)
@@ -17,41 +17,39 @@ const GetAllProducts = () => {
         })
         .catch(err => console.log(err))
     },[dispatch])
-    console.log(state)
-    const deleteProducts =  (id) => {
+    
+    const AddProductsToCart =  (id) => {
         console.log(id)
-     axios.post(`${BASE_URL}/deleteProductsByID`,{id})
+     axios.post(`${BASE_URL}/getProductsByID`,{id})
      .then(
-         dispatch({type:"UPDATE_PRODUCT",payload:state.allProducts.filter(e => e.id !== id)}))
-        
+         dispatch({type:"ADD_TO_CART",payload:state.cart}))
+       
     }
+console.log(state)
     return (
         <div className="wrapper">
+        
         
             {state.allProducts.map((product, i) => {
             console.log(product)
                 return(
-                
+                    
                     <div key={i}>
-                        <h2>Nom produit : {product.name}</h2>
+                        <h2>{product.name}</h2>
+                        <NavLink to={`/products/${product.id}`}>
                         <img src={`${BASE_IMAGE}/${product.url}`} alt={`${product.name}`} className="image-product" />
-                        <p>Description produit : {product.description}</p>
-                        <p>prix produit : {product.price} €</p>
-                        <p>categories : {product.categorie} </p>
-                        <button onClick={() => deleteProducts(product.id)}>Supprimer ce produit</button>
-                        <p><NavLink to={`/editProducts/${product.id}`}>Modifier ce produit: "{product.name}"</NavLink></p>
-                        <p><NavLink to={`/editPictures/${product.id}`}>Modifier la photo</NavLink></p>
+                        </NavLink>
+                        <p>{product.description}</p>
+                        <p>{product.price} €</p>
+                        <p>{product.categorie} </p>
+                        <button onClick={() => AddProductsToCart(product.id)}>Ajouter au panier</button>
+                        
                     </div>
+                    
                 )
             })}
         </div>    
     )
 }
 
-export default GetAllProducts
-
-
-
-// <button onClick={() => deletedArticle(article.id)}>X</button>
-
-// setGetProducts(res.data.result)
+export default GetProducts

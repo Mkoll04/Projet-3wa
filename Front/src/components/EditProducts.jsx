@@ -1,33 +1,38 @@
-import {useState, useEffect, Fragment} from "react"
+import {useState, useEffect, Fragment, useContext} from "react"
 import {useParams} from "react-router-dom"
 import axios from "axios"
 import {BASE_URL, BASE_IMAGE} from "../tools/constante.js"
 import { useNavigate } from "react-router-dom";
 import {inputCheck, checkInputValue} from "../tools/inputCheck.js"
+import {StoreContext} from "../tools/context.js"
 
 const EditArticles = () => {
     const navigate = useNavigate();
-    
+    const [state, dispatch] = useContext(StoreContext)
     const [productsByID, setProductsByID] = useState({
         name:'',
         description:'',
         price:'',
         categories_id:'',
         url:'',
-        caption:''
-        })
+        caption:'',
+        id:''
+    })
     const {id} = useParams()
     
     useEffect(() => {
         axios.post(`${BASE_URL}/getProductsByID`,{id})
-            .then(res => setProductsByID(res.data.data.result[0]))
+            .then(res =>{ 
+                console.log(res)
+                setProductsByID(res.data.data.result[0])
+            })
             .catch(err => console.log(err))
     },[id])
     
     const [categories, setCategories]=useState([{
         categorie:'',
         id:''
-        }])
+    }])
     
     useEffect(() => {
         axios.get(`${BASE_URL}/getCategories`)
@@ -57,6 +62,8 @@ const EditArticles = () => {
         setProductsByID({...productsByID, [name]: value})
     
         }
+        
+        
     const submit = (e) =>{
         e.preventDefault()
         if(!checkInputValue(productsByID.name)){
@@ -68,7 +75,17 @@ const EditArticles = () => {
             return
         }
         axios.post(`${BASE_URL}/editProducts`,{...productsByID})
-        .then(navigate("/getAllProducts"))
+        .then(() => {
+            // on recupere la liste des produit
+            let newProductsList = [...state.allProducts]
+            // on retire le produit que l'on souhaite modifier
+            newProductsList.filter((e) => e.id !== id)
+            // on remet la liste des produits a jour
+            newProductsList = [productsByID, ...newProductsList]
+            // a l'envoie dans le reducer
+            dispatch({type:"UPDATE_PRODUCT",  payload:newProductsList})
+            navigate("/getAllProducts")
+        })
         
     } 
     
@@ -77,7 +94,7 @@ const EditArticles = () => {
         <Fragment>
             {productsByID.url !== "" && (
                 <form onSubmit={submit} encType="multipart/form-data">
-                <img src={`${BASE_IMAGE}/${productsByID.url}`} alt={`${productsByID.name}`} />
+                <img src={`${BASE_IMAGE}/${productsByID.url}`} alt={`${productsByID.name}`} className="image-product" />
                     <label>Changement du nom du produit : 
                     <input type="text" placeholder='name' name='name' onChange={handleChange} value={productsByID.name} />
                     </label>

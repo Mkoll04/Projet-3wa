@@ -89,35 +89,40 @@ const AddProducts = () => {
 
     
     return(
-        <form onSubmit={submit} encType="multipart/form-data">
-        <h1>Ajouter image</h1>
-                <label name='image'>
-                <input type='file' name='image'/>
+        <div>
+            <h2>Ajout d'un produit</h2>
+            <form onSubmit={submit} encType="multipart/form-data">
+                <label name='image' className="image-product">
+                    <h3>Image du produit : </h3>
+                    <input type='file' name='image'/>
                 </label>    
-            <label>Le nom du produit : 
-                <input type='text' placeholder='name' name='name' onChange={handleChange} value={productsData.name} />
-            </label>
-            <label>Description du produit : 
-                <input type='text' placeholder='description' name='description' onChange={handleChange} value={productsData.description} />
-            </label>
-            <label>Prix du produit : 
-                <input type='text' placeholder='price' name='price' onChange={handleChange} value={productsData.price} />
-            </label>
-            <label> Categories:
-            <select name='categories_id' value={categories.id} onChange={handleChange} >
-            <option value="">Choisissez une catégorie</option>
-            {categories.map((categorie,i) => {
-                    return(
-                <option key={i} value={categorie.id}>{categorie.categorie}</option>
-                )
-            })}
-            
-                
-                
-            </select>
-            </label> 
-            <input type='submit' />
-        </form>    
+                <label>
+                    <h3>Le nom du produit : </h3>
+                    <input type='text' placeholder='name' name='name' onChange={handleChange} value={productsData.name} />
+                </label>
+                <label>
+                    <h3>Description du produit : </h3>
+                    <input type='text' placeholder='description' name='description' onChange={handleChange} value={productsData.description} />
+                </label>
+                <label>
+                    <h3>Prix du produit : </h3>
+                    <input type='text' placeholder='price' name='price' onChange={handleChange} value={productsData.price} />
+                </label>
+                <label>
+                    <h3> Categories: </h3>
+                    <select name='categories_id' value={categories.id} onChange={handleChange} >
+                        <option value="">Choisissez une catégorie</option>
+                            {categories.map((categorie,i) => {
+                            return(
+                            <option key={i} value={categorie.id}>{categorie.categorie}</option>
+                            )
+                            })}
+                    </select>
+                </label> 
+                <h3>Ajout du produit </h3>
+                    <input type='submit' value="Créer un produit" />
+            </form>  
+        </div>    
     )
 }
 

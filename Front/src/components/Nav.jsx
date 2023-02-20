@@ -19,8 +19,6 @@ const Nav = (props) => {
             HOME
           </NavLink>
         </li>
-        
-
         <li>
           <NavLink to="/login">
             Login
@@ -34,6 +32,16 @@ const Nav = (props) => {
          <li>
           <NavLink to="/getAllProducts">
             Products List
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/registerUser">
+            Sign Up
+          </NavLink>
+          </li>
+          <li>
+          <NavLink to="/products">
+            Broches et Tableaux
           </NavLink>
         </li>
       </ul>

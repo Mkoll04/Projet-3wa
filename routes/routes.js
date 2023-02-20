@@ -11,6 +11,9 @@ import getCategoriesController from "../controllers/getCategoriesController.js"
 import middlewareUploadFile from "../controllers/middlewareUploadFile.js"
 import editPicturesController from "../controllers/editPicturesController.js"
 
+import registerUserController from "../controllers/registerUserController.js"
+import loginController from "../controllers/loginController.js"
+
 const router = express.Router();
 
 router.post("/uploadFiles", uploadFilesController);
@@ -22,5 +25,10 @@ router.post("/getProductsByID", getProductsByIDController)
 router.post("/deleteProductsByID", deleteProductsByIDController)
 router.get("/getCategories", getCategoriesController)
 router.post("/editPictures", middlewareUploadFile, editPicturesController)
+
+router.post("/registerUser",registerUserController)
+router.post("/login", loginController)
+
+
 
 export default router;

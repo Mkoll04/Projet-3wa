@@ -1,3 +1,18 @@
+.image-product {
+  max-height:300px;
+  max-width:300px;
+}
+
+.wrapper {
+  max-width:65%;
+  margin : 0 auto;
+  
+}
+
+
+
+
+
 .App {
   text-align: center;
 }

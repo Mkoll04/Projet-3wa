@@ -2,7 +2,13 @@ import React from "react"
 const StoreContext = React.createContext([]);
 
 const initialState = {
-    data:[]
+    allProducts:[],
+    
+    user:{},
+    Log_in: false,
+    
+    cart:[]
+
 }
 
 export {StoreContext, initialState}
