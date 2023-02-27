@@ -13,28 +13,51 @@ const reducer = (state, action) =>{
                 ...state,
                 allProducts:action.payload
             }
-        
+        /* user:{
+                    isLogged:true,
+                    isAdmin:action.payload.admin,
+                    ...action.payload
+                }
+                */
         case "LOGIN":
             return {
                 ...state,
-                user: action.payload,
-                Log_in: true
+                user: {
+                    ...action.payload,
+                    isAdmin:action.payload.admin,
+                    isLogged: true
+                },
             }
         
         case "LOGOUT":
             return {
                 ...state,
-                user: {},
-                Log_in: false
+                user: {
+                    id:null,
+                    isLogged: false,
+                    isAdmin:false
+                }
             }        
         
         case "ADD_TO_CART":
             return{
                 ...state,
-                cart:action.payload
+                cart: [...state.cart, action.payload]
+                
+            }
+            
+        case "INIT_CART":
+            return{
+                ...state,
+                cart: [...action.payload]
+                
             }
         
-        
+        case "DELETE_CART":
+            return{
+                ...state,
+                cart:[...state.cart, action.payload]
+            }
         
         default:
             return state

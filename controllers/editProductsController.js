@@ -3,11 +3,11 @@ import Products from "../model/Products.js"
 
 
 export default async (req, res) => {
-     const {name, description, price, categories_id, id} = req.body
+     const {name, description, price,categories_id, id} = req.body
     try {
         const myBDD = new BDD()
         const products = new Products(myBDD)
-        const data = await products.update({name, description, price, categories_id, id})
+        const data = await products.update({name, description, price,categories_id, id})
         res.json({data})
     }catch(err) {
         console.log(err);

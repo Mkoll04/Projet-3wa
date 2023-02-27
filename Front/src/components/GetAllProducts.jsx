@@ -52,6 +52,3 @@ export default GetAllProducts
 
 
 
-// <button onClick={() => deletedArticle(article.id)}>X</button>
-
-// setGetProducts(res.data.result)

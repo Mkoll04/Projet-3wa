@@ -42,8 +42,7 @@ const Login = () => {
         axios.post(`${BASE_URL}/login`,{ email:info.email,password:info.password,})
             .then(res => {
                 if(res.data.response) {
-                    dispatch({ type: "LOGIN", payload: res.data.response.data})
-                    console.log(res.data.response)
+                    dispatch({ type: "LOGIN", payload: res.data.response.response})
                     localStorage.setItem('jwtToken', res.data.response.token)
                     axios.defaults.headers.common['Authorization'] = 'Bearer '+res.data.response.token
                     setInfo(initialState)
@@ -53,6 +52,7 @@ const Login = () => {
                 if(err.response.status === 500){
                     console.clear()
                 }
+                console.log(err)
                 setMessageErr(err.response.data.response.response)
             })
     }
@@ -61,7 +61,7 @@ const Login = () => {
     
     return(
         <Fragment>
-            {state.Log_in === false && (
+            {state.user.isLogged === false && (
                 <div>
                     <h3>Connectez-vous</h3>
                     <form onSubmit={submit}>
@@ -74,7 +74,7 @@ const Login = () => {
                     </form>
                 </div>
             )}
-            {state.Log_in === true && (
+            {state.user.isLogged === true && (
                 <div>
                 <p>Bonjour {state.user.first_name} {state.user.last_name} </p>
                     <Logout />

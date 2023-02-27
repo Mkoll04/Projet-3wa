@@ -3,10 +3,11 @@ const StoreContext = React.createContext([]);
 
 const initialState = {
     allProducts:[],
-    
-    user:{},
-    Log_in: false,
-    
+    user:{
+        isLogged: false,
+        isAdmin: false,
+        id:null
+    },
     cart:[]
 
 }

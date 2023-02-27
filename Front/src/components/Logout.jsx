@@ -14,7 +14,9 @@ const Logout = () => {
         
         delete axios.defaults.headers.common['Authorization']
         dispatch({ type: "LOGOUT" })
+        console.log(state)
         navigate("/")
+        console.log(state)
     }
     
     

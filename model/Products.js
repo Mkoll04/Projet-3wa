@@ -31,10 +31,16 @@ class Products {
             return err
         }
     }
-    
+     
     
     async getAll(){
-        const sql = "SELECT products.id, products.name, products.price, products.description, products.categories_id, categories.categorie,pictures.url,pictures.caption  FROM products INNER JOIN categories ON categories.id = products.categories_id  INNER JOIN pictures ON pictures.products_id=products.id" 
+        const sql = `
+            SELECT p.id, p.name, p.price, p.description, p.categories_id, c.categorie, pi.url, pi.caption  
+            FROM products p
+            INNER JOIN categories c 
+            ON c.id = p.categories_id  
+            INNER JOIN pictures pi
+            ON pi.products_id = p.id`
         
         try{
             const result = await this.asyncQuery(sql)

@@ -1,7 +1,7 @@
-import './App.css';
+/*import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 /*import React from "react"
-import {StoreContext} from "./context.js"*/
+import {StoreContext} from "./context.js"
 import './App.css';
 import Home from "./components/Home.jsx"
 import Nav from "./components/Nav.jsx"
@@ -50,3 +50,19 @@ function App() {
 
 export default App;
 
+*/
+import './App.css';
+import Router from "./components/Router.jsx"
+import { BrowserRouter } from "react-router-dom";
+import Nav from "./components/Nav";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Nav />
+            <Router />
+        </BrowserRouter>
+    );
+}
+
+export default App;

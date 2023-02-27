@@ -21,8 +21,13 @@ class User {
             const passwordIsValide = await bcrypt.compare(password,dataBDD[0].password)
             console.log(passwordIsValide)
             
+            const sqlGetOrderId = "SELECT id AS order_id FROM orders WHERE users_id = ?"
+            const orderId = await this.asyncQuery(sqlGetOrderId,[dataBDD[0].id])
+            
+            console.log({...dataBDD[0], order_id:orderId[0].order_id})
+            
             if(passwordIsValide){
-                return{response:passwordIsValide, data:dataBDD[0]}
+                return{response:passwordIsValide, data:{...dataBDD[0], order_id:orderId[0].order_id} }
             }
             
             return{response: "email ou mot de passe invalide"}
@@ -34,7 +39,7 @@ class User {
     
     async _emailExist(email){
         try {
-            const sql = "SELECT email,password,first_name,last_name,roles_id FROM users WHERE email = ?"
+            const sql = "SELECT * FROM users WHERE email = ?"
             const response  = await this.asyncQuery(sql,[email])
             if(response.length > 0) return response
             return false
@@ -50,7 +55,10 @@ class User {
         if(password.length <= 8){
             return {response:'mdp trop court'}
         }
-        
+        inputCheck(first_name, 63)
+        inputCheck(last_name, 63)
+        inputCheck(email)
+        inputCheck(password)
         try {
             // on verrifie si l'email existe en BDD
             const emailPresent = await this._emailExist(email)
@@ -73,6 +81,11 @@ class User {
             
             // on fait la requete
             const createUser = await this.asyncQuery(sql,paramsSql)
+            
+            // on creer le panier de l'utilisateur
+            const sqlCreateCart = 'INSERT INTO orders (users_id) VALUES (?)'
+            await this.asyncQuery(sqlCreateCart,createUser.insertId)
+            
             
             // on retourn la reponse
             return {response:createUser}
@@ -97,21 +110,21 @@ class User {
         }
     }
     
-    async getAllUser(){
-        const sql = "SELECT * FROM users"
+    // async getAllUser(){
+    //     const sql = "SELECT * FROM users"
         
-        try {
-            const result = await this.asyncQuery(sql)
-            return result
-        } catch(err){
-            console.log(err)
-            if(err) throw err
+    //     try {
+    //         const result = await this.asyncQuery(sql)
+    //         return result
+    //     } catch(err){
+    //         console.log(err)
+    //         if(err) throw err
             
-        }
-    }
+    //     }
+    // }
     
-    async getByID({id}){
-        const sql = "SELECT * FROM users WHERE id = ?"
+    async getUserByID({id}){
+        const sql = "SELECT email,password,first_name,last_name FROM users WHERE id = ?"
         
         try {
             const result = await this.asyncQuery(sql, [id])
@@ -122,6 +135,28 @@ class User {
             
         }
     }
+
+    async updateUser({password,first_name,last_name, id}){
+        console.log({password,first_name,last_name, id})
+        const sql = "UPDATE users SET password = ?, first_name = ?, last_name = ? WHERE id = ?"
+        const mpdHash = await bcrypt.hash(password,this.saltRounds)
+        const paramsSql = [ mpdHash, first_name,last_name, id]
+        inputCheck(first_name, 63)
+        inputCheck(last_name, 63)
+        inputCheck(password)
+       
+        try{
+            const result = await this.asyncQuery(sql,paramsSql)
+            console.log(result)
+            return {result}
+        } catch(err){
+            console.log(err)
+            return err
+        }
+    }
+    
+    
+    
 }
 
 export default User
