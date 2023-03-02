@@ -1,20 +1,26 @@
+/********GOOGLE FONT**********/
 
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Julius+Sans+One&family=Monda&display=swap');
 
 /********NAV-HEADER**********/
 
 header {
-  margin:1rem;
+  
   display:flex;
   flex-wrap:wrap;
   background-color:rgba(224, 224, 235, 1);
-  justify-content:space-around;
+  justify-content:space-between;
   width:100%;
+  font-family: 'Cinzel', serif;
+  align-items: center;
 }
 
 header .header-logo{
   width:7.5rem;
   height:7.5rem;
-  padding:0.5rem 10rem 0.5rem 0 ;
+  padding:0.5rem 0 0.5rem 0 ;
+  margin:0 0 0 1rem;
+  border-radius:10rem;
   
 }
 
@@ -22,9 +28,8 @@ header .header-logo{
 {
   display: block;
   position: relative;
-  top: 3.5rem;
-  left: 0.2rem;
-  
+  top:0.15rem;
+  margin:0 1rem 0 0;
   z-index: 1;
   
   -webkit-user-select: none;

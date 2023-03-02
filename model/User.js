@@ -8,6 +8,18 @@ class User {
         this.saltRounds = 10
     }   
     
+    async getAddress(user_id){
+        console.log(user_id)
+        const sql = "SELECT street, number, postal_code, city FROM address WHERE users_id = ?"
+        try {
+            const result = await this.asyncQuery(sql,[user_id])
+            console.log({result})
+            return {result:result.length > 0 ? result[0] : null }
+        } catch(e){
+            return {error:e}
+        }
+    }
+    
     async login({email, password}){
         try{
             const dataBDD = await this._emailExist(email) 

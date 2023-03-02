@@ -74,9 +74,9 @@ class Cart{
         return result
     }
     
-    async deleteCart({products_id,orders_id}){
-        const sql = "DELETE FROM products_order WHERE products_id = ? AND orders_id =?"
-        const paramsCart = [products_id,orders_id]
+    async deleteCart({orders_id}){
+        const sql = "DELETE FROM products_order WHERE orders_id =?"
+        const paramsCart = [orders_id]
         try{
             const result = await this.asyncQuery(sql,paramsCart)
             return {result}

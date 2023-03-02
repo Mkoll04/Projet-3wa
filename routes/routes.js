@@ -21,6 +21,15 @@ import checkToken from '../controllers/checkToken.js'
 import addToCartController from "../controllers/addToCartController.js"
 import getCartController from "../controllers/getCartController.js"
 import deleteCartController from "../controllers/deleteCartController.js"
+
+import addAdressController from "../controllers/addAdressController.js"
+import getAddressController from "../controllers/getAddressController.js"
+import updateAdressController from "../controllers/updateAdressController.js"
+
+import createMessageController from "../controllers/createMessageController.js"
+import getMessageByIdController from "../controllers/getMessageByIdController.js"
+import deleteMessageController from "../controllers/deleteMessageController.js"
+
 const router = express.Router();
 
 router.post("/uploadFiles", uploadFilesController);
@@ -43,5 +52,12 @@ router.post("/addToCart", addToCartController)
 router.post("/getCart", getCartController)
 router.post("/deleteCart", deleteCartController)
 
+router.post("/addAddress", addAdressController)
+router.post("/getAddress", getAddressController)
+router.post("/updateAdress", updateAdressController)
+
+router.post("/createMessage", createMessageController)
+router.post("/getMessage", getMessageByIdController)
+router.post("/deleteMessage", deleteMessageController)
 
 export default router;

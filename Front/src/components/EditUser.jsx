@@ -5,8 +5,11 @@ import {BASE_URL, BASE_IMAGE} from "../tools/constante.js"
 import { useNavigate } from "react-router-dom";
 import {inputCheck, checkInputValue} from "../tools/inputCheck.js"
 import {StoreContext} from "../tools/context.js"
+import UpdateAddress from"./UpdateAdress.jsx"
+import GetMessageByUser from "./GetMessageByUser.jsx"
 
-const EditArticles = () => {
+
+const EditUser = () => {
     const navigate = useNavigate();
     const [state, dispatch] = useContext(StoreContext)
     const [userByID, setUserByID] = useState({
@@ -15,12 +18,13 @@ const EditArticles = () => {
         last_name:'',
         id:''
     })
+    const [address, setAddress]= useState("")
     const {id} = useParams()
     
     useEffect(() => {
         axios.post(`${BASE_URL}/getUserById`,{id})
             .then(res =>{ 
-                console.log(res)
+                console.log({res,id})
                 const data = res.data.data[0]
                 data.password = ""
                 data.id = id
@@ -29,6 +33,16 @@ const EditArticles = () => {
             .catch(err => console.log(err))
     },[id])
     
+    useEffect(() => {
+        axios.post(`${BASE_URL}/getAddress`,{users_id:id})
+            .then(res =>{ 
+                const address = res.data.data.result[0]
+                setAddress(address)
+                
+            })
+            .catch(err => console.log(err))
+    },[id])
+    console.log(state)
     const handleChange = (e) => {
         const {name, value} = e.target
         
@@ -80,17 +94,22 @@ const EditArticles = () => {
         })
         
     } 
-    
+    console.log(state)
     
     return (
         <Fragment>
         <h2>Mon Profil</h2>
         <h3>Mes Informations</h3>
-        <p>Prénom : {state.user.first_name}</p>
-        <p>Nom : {state.user.last_name}</p>
+        <p>Prénom : {userByID.first_name}</p>
+        <p>Nom : {userByID.last_name}</p>
         <p>Mail : {state.user.email}</p>
+        {state.user.adress && (
+            <p>Adresse : {state.user.adress.number} {state.user.adress.street} {state.user.adress.postal_code} {state.user.adress.city}</p>
+        )}
         <h2>Modifier votre profil</h2>
+        <h3>Modifier vos informations de connexion</h3>
             {userByID.url !== "" && (
+            
                 <form onSubmit={submit} >
             
                     <label>Changement du mot de passe :
@@ -106,8 +125,16 @@ const EditArticles = () => {
                     <input type='submit' />
                 </form>
             )}
+            <h3>Modifier votre adresse : </h3>
+            {state.user.adress === null && (
+            <p>Vous n'avez pas renseigné votre adresse</p>
+            )}
+            {state.user.adress !== null && (
+            <UpdateAddress />
+            )}
+            <GetMessageByUser />
         </Fragment>
     )
 }
 
-export default EditArticles
+export default EditUser

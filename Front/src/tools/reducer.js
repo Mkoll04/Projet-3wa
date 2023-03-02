@@ -28,7 +28,15 @@ const reducer = (state, action) =>{
                     isLogged: true
                 },
             }
-        
+        case "UPDATE_USER":
+            return{
+                ...state,
+                user:{
+                    ...state.user,
+                    adress:action.payload
+                }
+            }
+            
         case "LOGOUT":
             return {
                 ...state,
@@ -40,9 +48,15 @@ const reducer = (state, action) =>{
             }        
         
         case "ADD_TO_CART":
+            // on creer une copie de travail
+            const data = state.cart
+            // on verifie si le produit est deja dans le panier
+            const isInCart = data.find(e => e.id === action.payload.id)
+            // si il est pas dans le panier on l'ajoute
+            if(!isInCart) data.push(action.payload)
             return{
                 ...state,
-                cart: [...state.cart, action.payload]
+                cart: data
                 
             }
             
@@ -52,13 +66,26 @@ const reducer = (state, action) =>{
                 cart: [...action.payload]
                 
             }
+            
+        case "REMOVE_CART":
+            return{
+                ...state,
+                cart:[action.payload]
+            }
         
         case "DELETE_CART":
             return{
                 ...state,
-                cart:[...state.cart, action.payload]
+                cart:[]
             }
-        
+        case "UPDATE_ADDRESS":
+            return{
+                ...state,
+                user:{
+                    ...state.user,
+                    adress:action.payload
+                }
+            }
         default:
             return state
     }

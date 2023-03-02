@@ -41,6 +41,7 @@ const Login = () => {
         }
         axios.post(`${BASE_URL}/login`,{ email:info.email,password:info.password,})
             .then(res => {
+                console.log(res)
                 if(res.data.response) {
                     dispatch({ type: "LOGIN", payload: res.data.response.response})
                     localStorage.setItem('jwtToken', res.data.response.token)
@@ -53,6 +54,7 @@ const Login = () => {
                     console.clear()
                 }
                 console.log(err)
+                
                 setMessageErr(err.response.data.response.response)
             })
     }

@@ -3,6 +3,7 @@ import BDD from "../model/BDD.js"
 import User from "../model/User.js"
 
 const generateResponse = async (userDataSQL) => {
+    console.log(userDataSQL)
     // ID du role Admin en BDD
     const ADMIN_ROLE_ID = 1
      
@@ -17,6 +18,7 @@ const generateResponse = async (userDataSQL) => {
         last_name:userDataSQL.last_name,
         roles_id:userDataSQL.roles_id,
         order_id:userDataSQL.order_id,
+        adress:userDataSQL.address,
         user:true,
         admin
 
@@ -40,7 +42,8 @@ export default async (req, res) => {
         if(!result.data){
             return res.status(500).json({response:result})
         }
-        const response = await generateResponse(result.data)
+        const address = await user.getAddress(result.data.id)
+        const response = await generateResponse({...result.data, address:address.result})
         res.json(result.response ? {response} : {response:null})
     }catch(err) {
         console.log(err);

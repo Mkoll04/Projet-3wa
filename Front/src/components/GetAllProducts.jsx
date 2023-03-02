@@ -18,6 +18,7 @@ const GetAllProducts = () => {
         .catch(err => console.log(err))
     },[dispatch])
     console.log(state)
+    
     const deleteProducts =  (id) => {
         console.log(id)
      axios.post(`${BASE_URL}/deleteProductsByID`,{id})

@@ -3,8 +3,9 @@ import {useEffect} from 'react'
 import axios from 'axios'
 import {useContext} from "react"
 import {StoreContext} from "../tools/context.js"
+
 const Nav = (props) => {
-  
+    
     useEffect(() => {
     if(!axios.defaults.headers.common['Authorization']){
       const token = localStorage.getItem("jwtToken")
@@ -18,6 +19,7 @@ const Nav = (props) => {
   return (
     <header>
       <img src="../images/Logo-Ayaco.jpg" alt="logo artiste" className="header-logo"/>
+      <h1>AYACO </h1>
       <nav role="navigation">
 
           <div className="menuToggle">
@@ -66,12 +68,21 @@ const Nav = (props) => {
                   </NavLink>
                 </li>
                 {user.id &&
+                <li>
+                  <NavLink to="/createMessage" className="NavLink">
+                    Formulaire de contact
+                  </NavLink>
+                </li>
+                }
+                {user.id &&
                   <li>
                     <NavLink to={`/editUser/${user.id}`} className="NavLink">
                      Profil
                     </NavLink>
                   </li>
+                  
                 }
+                
                 </ul>
           </div>
       </nav>
