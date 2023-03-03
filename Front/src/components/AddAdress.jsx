@@ -28,13 +28,13 @@ const RegisterUser = () => {
             }
         }
         if (name === "number" ){
-           if (!inputCheck(name,63)){
+           if (!inputCheck(name,63) && isNaN(userAdress.number) === true){
                alert("donnees incorrectes")
                return
            }
         }
         if (name ==="postal_code"){
-            if(!inputCheck(name,63)){
+            if(!inputCheck(name,63) && isNaN(userAdress.postal_code) === true){
                 alert("donnees incorrectes")
                 return
             }
@@ -54,11 +54,11 @@ const RegisterUser = () => {
             alert("donnees incorrectes")
             return
         }
-        if(!checkInputValue(userAdress.number)){
+        if(!checkInputValue(userAdress.number) && isNaN(userAdress.number) === true){
             alert("donnees incorrectes")
             return
         }
-        if(!checkInputValue(userAdress.postal_code)){
+        if(!checkInputValue(userAdress.postal_code) && isNaN(userAdress.postal_code) === true){
             alert("donnees incorrectes")
             return
         }

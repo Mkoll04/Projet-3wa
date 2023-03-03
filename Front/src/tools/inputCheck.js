@@ -35,6 +35,7 @@ const inputCheck = (value, max = 255, min = 1) => {
         }
         return true
     }
+    
 const checkInputValue = (data) => {
     if ((typeof data === 'string' || typeof data === 'number') && data.trim().length === 0) {
         return false

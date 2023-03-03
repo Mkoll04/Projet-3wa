@@ -1,4 +1,6 @@
 import inputCheck from "../config/inputCheck.js"
+import numberInputCheck from "../config/numberInputCheck.js"
+
 class Adress {
     constructor(bdd){
         this.pool = bdd.pool
@@ -9,10 +11,11 @@ class Adress {
         const sql = "INSERT INTO address (users_id, street, number, postal_code, city) VALUES (?,?,?,?,?)"
         
         const paramsSql = [users_id, street, number, postal_code, city]
-        inputCheck(street)
-        inputCheck(number,63)
-        inputCheck(postal_code,63)
-        inputCheck(city,63)
+        if (!inputCheck(street) || !inputCheck(number,63) || 
+        !numberInputCheck(number) || !inputCheck(postal_code,63) || 
+        !numberInputCheck(postal_code) || !inputCheck(city,63)){
+            return 
+        }
         try{
             const result = await this.asyncQuery(sql,paramsSql)
             return {result}

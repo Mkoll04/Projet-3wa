@@ -38,28 +38,24 @@ const Nav = (props) => {
                     Login
                   </NavLink>
                 </li>
+                
                 {user.isAdmin &&
                 <li>
-                  <NavLink to="/addProducts" className="NavLink">
-                    Ajout de produits
-                  </NavLink>
-                </li>
-                }
-                {user.isAdmin &&
-                <li>
-                  <NavLink to="/getAllProducts" className="NavLink">
-                    Liste des produits
+                  <NavLink to="/getAllProducts" className="NavLink" >
+                    Gestion
                   </NavLink>
                 </li>  
                 }
+                {!user.id &&
                 <li>
                   <NavLink to="/registerUser" className="NavLink">
                     S'enregistrer
                   </NavLink>
                 </li>
+                }
                 <li>
                   <NavLink to="/products" className="NavLink">
-                    Broches et Tableaux
+                    Broches 
                   </NavLink>
                 </li>
                 <li>
@@ -70,7 +66,7 @@ const Nav = (props) => {
                 {user.id &&
                 <li>
                   <NavLink to="/createMessage" className="NavLink">
-                    Formulaire de contact
+                     Contact
                   </NavLink>
                 </li>
                 }

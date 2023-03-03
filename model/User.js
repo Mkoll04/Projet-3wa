@@ -27,9 +27,11 @@ class User {
             if(!dataBDD[0]){
                 return {response: "email ou mot de passe invalide"}
             }
-            inputCheck(email)
-            inputCheck(password)
-            
+            if(
+            !inputCheck(email) || !inputCheck(password)
+            ){
+                return
+            }
             const passwordIsValide = await bcrypt.compare(password,dataBDD[0].password)
             console.log(passwordIsValide)
             
@@ -67,10 +69,14 @@ class User {
         if(password.length <= 8){
             return {response:'mdp trop court'}
         }
-        inputCheck(first_name, 63)
-        inputCheck(last_name, 63)
-        inputCheck(email)
-        inputCheck(password)
+        if(
+        !inputCheck(first_name, 63) ||
+        !inputCheck(last_name, 63) ||
+        !inputCheck(email) ||
+        !inputCheck(password)
+        ){
+            return
+        }
         try {
             // on verrifie si l'email existe en BDD
             const emailPresent = await this._emailExist(email)
@@ -153,10 +159,13 @@ class User {
         const sql = "UPDATE users SET password = ?, first_name = ?, last_name = ? WHERE id = ?"
         const mpdHash = await bcrypt.hash(password,this.saltRounds)
         const paramsSql = [ mpdHash, first_name,last_name, id]
-        inputCheck(first_name, 63)
-        inputCheck(last_name, 63)
-        inputCheck(password)
-       
+        if(
+        !inputCheck(first_name, 63) ||
+        !inputCheck(last_name, 63) ||
+        !inputCheck(password)
+       ){
+           return
+       }
         try{
             const result = await this.asyncQuery(sql,paramsSql)
             console.log(result)

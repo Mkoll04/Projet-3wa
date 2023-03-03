@@ -42,7 +42,7 @@ const EditArticles = () => {
     const handleChange = (e) => {
         const {name, value} = e.target
         if(name === "price"){
-            if(!inputCheck(name)){
+            if(!inputCheck(name) && isNaN(name) === true){
                 alert("donnees incorrectes")
                 return
             }

@@ -9,7 +9,12 @@ class Message {
         const sql = "INSERT INTO messages (content, users_id) VALUES (?,?)"
         
         const paramsSql = [content, users_id]
-        inputCheck(content)
+        if(!inputCheck(content)){
+            return
+        }
+        
+            
+        
         try{
             const result = await this.asyncQuery(sql,paramsSql)
             return {result}

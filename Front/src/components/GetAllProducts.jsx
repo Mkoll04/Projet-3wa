@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom"
 import {useEffect, useContext} from "react"
 import {BASE_URL, BASE_IMAGE} from "../tools/constante.js"
 import {StoreContext} from "../tools/context.js"
+import AddProducts from "./AddProducts.jsx"
 
 const GetAllProducts = () => {
     
@@ -27,25 +28,28 @@ const GetAllProducts = () => {
         
     }
     return (
-        <div className="wrapper">
-        
-            {state.allProducts.map((product, i) => {
-            console.log(product)
-                return(
-                
-                    <div key={i}>
-                        <h2>Nom produit : {product.name}</h2>
-                        <img src={`${BASE_IMAGE}/${product.url}`} alt={`${product.name}`} className="image-product" />
-                        <p>Description produit : {product.description}</p>
-                        <p>prix produit : {product.price} €</p>
-                        <p>categories : {product.categorie} </p>
-                        <button onClick={() => deleteProducts(product.id)}>Supprimer ce produit</button>
-                        <p><NavLink to={`/editProducts/${product.id}`}>Modifier ce produit: "{product.name}"</NavLink></p>
-                        <p><NavLink to={`/editPictures/${product.id}`}>Modifier la photo</NavLink></p>
-                    </div>
-                )
-            })}
-        </div>    
+        <div>
+            <AddProducts />
+            <div className="wrapper">
+            
+                {state.allProducts.map((product, i) => {
+                console.log(product)
+                    return(
+                    
+                        <div key={i}>
+                            <h2>Nom produit : {product.name}</h2>
+                            <img src={`${BASE_IMAGE}/${product.url}`} alt={`${product.name}`} className="image-product" />
+                            <p>Description produit : {product.description}</p>
+                            <p>prix produit : {product.price} €</p>
+                            <p>categories : {product.categorie} </p>
+                            <button onClick={() => deleteProducts(product.id)}>Supprimer ce produit</button>
+                            <p><NavLink to={`/editProducts/${product.id}`}>Modifier ce produit: "{product.name}"</NavLink></p>
+                            <p><NavLink to={`/editPictures/${product.id}`}>Modifier la photo</NavLink></p>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
     )
 }
 
