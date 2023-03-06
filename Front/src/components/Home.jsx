@@ -1,11 +1,11 @@
 const Home = () => {
-    
-    const number = 5
-    
-    console.log(isNaN(number))
+
     
     return(
-        <h1>Home</h1>
+        <div>
+            
+            <img src="../images/Mont-Fuji.jpg" alt="logo artiste" className="header-logo"/>
+        </div>
     )
 }
 

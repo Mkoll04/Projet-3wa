@@ -1,5 +1,5 @@
 import inputCheck from "../config/inputCheck.js"
-import numberInputCheck from "../config/numberInputCheck.js"
+
 
 class Adress {
     constructor(bdd){
@@ -12,16 +12,16 @@ class Adress {
         
         const paramsSql = [users_id, street, number, postal_code, city]
         if (!inputCheck(street) || !inputCheck(number,63) || 
-        !numberInputCheck(number) || !inputCheck(postal_code,63) || 
-        !numberInputCheck(postal_code) || !inputCheck(city,63)){
-            return 
+        isNaN(number) || !inputCheck(postal_code,63) || 
+        isNaN(postal_code) || !inputCheck(city,63)){
+            return {error:"pb de input"}
         }
         try{
             const result = await this.asyncQuery(sql,paramsSql)
             return {result}
         } catch(err){
             console.log(err)
-            return err
+            return {err}
         }
     }
     

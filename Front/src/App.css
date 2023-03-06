@@ -20,7 +20,7 @@ header .header-logo{
   height:7.5rem;
   padding:0.5rem 0 0.5rem 0 ;
   margin:0 0 0 1rem;
-  border-radius:10rem;
+  border-radius:50%;
   
 }
 
@@ -28,7 +28,7 @@ header .header-logo{
 {
   display: block;
   position: relative;
-  top:0.15rem;
+  top:3.5rem;
   margin:0 1rem 0 0;
   z-index: 1;
   
@@ -44,10 +44,8 @@ header .header-logo{
   transition: color 0.3s ease;
 }
 
-.menuToggle .Navlink:hover
-{
-  color: tomato;
-}
+
+
 
 
 .menuToggle input
@@ -56,7 +54,7 @@ header .header-logo{
   width: 3rem;
   height: 2rem;
   position: absolute;
-  top: -0.5rem;
+  top:-0.5rem;
   left: -0.75rem;
   
   cursor: pointer;
@@ -153,8 +151,8 @@ header .header-logo{
 
 .menu .NavLink
 {
-  padding: 1rem;
-  font-size: 22px;
+  margin:1rem ;
+  font-size: 1.5rem;
 }
 
 /*
@@ -163,6 +161,15 @@ header .header-logo{
 .menuToggle input:checked ~ ul
 {
   transform: none;
+}
+.menu li{
+  margin:1rem;
+  position:relative;
+}
+
+
+.menu .NavLink{
+    
 }
 
 @media only screen and (min-width: 1200px){
@@ -177,7 +184,7 @@ header .header-logo{
   align-items: center;
   justify-content:flex-end;
   width:100%;
-  top:5rem;
+  top:2rem;
   margin:0;
   transform: translate(0,0%);
   padding:0  ;
@@ -193,7 +200,10 @@ header{
   justify-content:space-between
 }
 
-  
+.menu .NavLink{
+  margin:0;
+  padding:0.5rem;
+}  
 }
 
 
@@ -218,7 +228,7 @@ header{
   align-items: center;
   align-content:space-around;
   flex-direction:column;
-  margin-bottom:1rem;
+  margin:1rem 0;
   padding-bottom:1rem;
   background-color:rgba(239, 239, 245, 1);
   
@@ -230,4 +240,15 @@ header{
   border-radius:1rem;
 }
 
+@media only screen and (min-width: 1200px){
 
+.card {
+  width:45%;
+  margin:1rem;
+}
+  
+.card-wrapper{
+  display:flex;
+}
+  
+}

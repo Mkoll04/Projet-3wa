@@ -12,11 +12,14 @@ const UpdateAddress = () => {
     const {id} = useParams()
     
     const [address, setAddress] = useState({
-        street: state.user.adress.street,
-        number: state.user.adress.number    ,
-        postal_code: state.user.adress.postal_code,
-        city: state.user.adress.city
+        street: "",
+        number: "",
+        postal_code: "",
+        city: ""
     })
+    
+    
+    
     useEffect(() => {
         axios.post(`${BASE_URL}/getAddress`,{users_id:id})
             .then(res =>{ 

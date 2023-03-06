@@ -1,5 +1,5 @@
 import inputCheck from "../config/inputCheck.js"
-import numberInputCheck "../config/numberInputCheck.js"
+import numberInputCheck from "../config/numberInputCheck.js"
 class Products {
     constructor(bdd){
         this.pool = bdd.pool

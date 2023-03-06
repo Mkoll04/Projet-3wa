@@ -1,6 +1,6 @@
 import axios from "axios"
 import {BASE_URL} from '../tools/constante.js'
-import {useState, useContext} from "react"
+import {useState, useContext, useEffect} from "react"
 import {inputCheck, checkInputValue} from "../tools/inputCheck.js"
 import {StoreContext} from "../tools/context.js"
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ const RegisterUser = () => {
     
     const navigate = useNavigate();
     const [state, dispatch] = useContext(StoreContext)
+    const [check, setCheck] = useState(false)
     const [userAdress, setUserAdress] = useState({
         users_id:'',
         street:'',
@@ -74,10 +75,17 @@ const RegisterUser = () => {
            city: userAdress.city,
        })
        .then(res => {
-           
-           navigate("/commandeSuccess")
+           console.log(res)
+           dispatch({type:"UPDATE_ADDRESS",  payload:userAdress})
+           setCheck(true)
        })
     }
+    
+    useEffect(() => {
+        if(check){
+            navigate("/commandeSuccess")
+        }
+    },[check])
     
     
     return(

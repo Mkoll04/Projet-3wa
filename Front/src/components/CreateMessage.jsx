@@ -50,14 +50,17 @@ const RegisterUser = () => {
     
     
     return(
-        <form onSubmit={submit}>
-               <label>
-                  Write your post:
-                  <textarea name="content" rows={4} cols={40} onChange={handleChange} value={message.content} />
-                </label>
-                   
-            <input type='submit' value='Envoyer mon message' />
-        </form>    
+        <div>
+        <h2>Formulaire de contact</h2>
+            <form onSubmit={submit} className="contact-form">
+                   <label>
+                      <p>Si vous avez une demande, écrivez un message ci-dessous.</p>
+                      <textarea name="content" rows={4} cols={40} onChange={handleChange} value={message.content} />
+                    </label>
+                       
+                <input type='submit' value='Envoyer mon message' />
+            </form> 
+        </div>
     )
 }
 
