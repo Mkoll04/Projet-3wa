@@ -25,7 +25,7 @@ const Nav = (props) => {
   return (
     <header>
       <img src="../images/Logo-Ayaco.jpg" alt="logo artiste" className="header-logo"/>
-      <h1>AYACO </h1>
+      <h1><div> ayaco</div><div> broderie</div></h1>
       <nav role="navigation">
           <div className="menuToggle">
           <input type="checkbox" checked={menuOpen} onChange={handleMenuToggle} />

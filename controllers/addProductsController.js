@@ -10,7 +10,16 @@ export default async (req, res) => {
         const data = await products.create({name, description, price, categories_id})
         const product_id = data.result.insertId
         const data3 = await products.createPictures({product_id,url:files,caption:name})
-        res.json({data, data3})
+        const product = {
+            id:product_id,
+            url:files,
+            name,
+            description,
+            price,
+            categories_id,
+        }
+        
+        res.json({data, data3, product})
     }catch(err) {
         console.log(err);
         res.sendStatus(500)

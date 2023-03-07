@@ -18,8 +18,6 @@ const UpdateAddress = () => {
         city: ""
     })
     
-    
-    
     useEffect(() => {
         axios.post(`${BASE_URL}/getAddress`,{users_id:id})
             .then(res =>{ 
@@ -29,9 +27,6 @@ const UpdateAddress = () => {
             })
             .catch(err => console.log(err))
     },[id])
-    console.log(state)
-    console.log(address)
-    
     
    const handleChange = (e) => {
         const {name, value} = e.target
@@ -91,7 +86,7 @@ const UpdateAddress = () => {
         
     } 
     
-    console.log(state)
+    
     return (
         <Fragment>
             

@@ -2,6 +2,7 @@ import axios from "axios"
 import {BASE_URL} from '../tools/constante.js'
 import {useState} from "react"
 import {inputCheck, checkInputValue} from "../tools/inputCheck.js"
+import { useNavigate } from "react-router-dom";
 
 const RegisterUser = () => {
     const [userData, setUserData] = useState({
@@ -10,6 +11,8 @@ const RegisterUser = () => {
         first_name:'',
         last_name:''
     })
+    
+    const navigate = useNavigate();
     
     const handleChange = (e) => {
         const {name, value} = e.target
@@ -63,7 +66,9 @@ const RegisterUser = () => {
            password: userData.password,
            first_name: userData.first_name,
            last_name:userData.last_name
-       })
+        }).then((res)=> {
+            navigate("/login")
+        })
     }
     
     

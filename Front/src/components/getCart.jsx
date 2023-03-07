@@ -19,8 +19,6 @@ const Cart = () => {
         }
     },[state.user])
     
-    console.log(state)
-    
     const deleteCart =  (products_id,orders_id) => {
         console.log({products_id, cart:state.cart})
         axios.post(`${BASE_URL}/deleteCart`,{products_id,orders_id})
@@ -32,7 +30,7 @@ const Cart = () => {
             })
         })
     }
-    console.log(state.cart.length)
+    
     return (
         <div>
             <div className="card-wrapper">

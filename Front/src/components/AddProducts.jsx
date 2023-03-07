@@ -1,16 +1,24 @@
 import axios from "axios"
 import {BASE_URL} from '../tools/constante.js'
-import {useState, useEffect} from "react"
+import {useState, useEffect, useContext} from "react"
 import { useNavigate } from "react-router-dom";
 import {inputCheck, checkInputValue} from "../tools/inputCheck.js"
+import {StoreContext} from "../tools/context.js"
 
 const AddProducts = () => {
-    const [productsData, setProductsData] = useState({
+    
+    const [state, dispatch] = useContext(StoreContext)
+    
+    const initialState = {
         name:'',
         description:'',
         price:'',
         categories_id:''
-    })
+    }
+    
+    
+    
+    const [productsData, setProductsData] = useState(initialState)
     
     const [categories, setCategories]=useState([{
         name:'',
@@ -64,7 +72,7 @@ const AddProducts = () => {
         const dataFile = new FormData();
         const files = {...e.target.image.files};
         
-        console.log(files)
+        
         
         // ajouter d'autre input au formulaire
         dataFile.append('name', productsData.name)
@@ -78,9 +86,31 @@ const AddProducts = () => {
         console.log(dataFile)
         axios.post(`${BASE_URL}/addProducts`, dataFile)
         .then((res)=> {
-            console.log(res)
-            res.data.response && console.log('succesfully upload');
-            navigate("/getAllProducts")
+            // on creer une copie du state allProducts pour le mettre a jour
+            const allProducts = [...state.allProducts]
+            
+            // les differente categorie en BDD
+            const categorie = {1:"Broche",2:"Tableau"}
+            
+            // on creer l'objet qui represente un produit dans le Reducer
+            // a partir de la reponse obtenu de Back
+            const product = {...res.data.product}
+            
+            // on ajout les key manquante
+            product.caption = product.name
+            product.categorie = categorie[product.categories_id]
+            
+            // On ajout le nouveau produit a la liste des produit existant
+            allProducts.push(product)
+            
+            // on envoie dans le Reducer
+            dispatch({
+                type:"UPDATE_PRODUCT",
+                payload:allProducts
+            })
+            
+            // on vide les inputs
+            setProductsData(initialState)
         })
         .catch((err) => {
             console.log(err)

@@ -13,19 +13,18 @@ const GetMessageByUser = () => {
     const [state, dispatch] = useContext(StoreContext)
     const navigate = useNavigate();
     
-    console.log(state)
+    
     
     useEffect(() => {
         axios.post(`${BASE_URL}/getMessage`,{users_id:state.user.id})
             .then(res =>{ 
-                console.log(res)
                 setMessageByID(res.data.data)
             })
             .catch(err => console.log(err))
     },[users_id])
-    console.log(state)
+    
     const deleteMessage =  (id) => {
-        console.log(id)
+    
      axios.post(`${BASE_URL}/deleteMessage`,{id})
       .then(res => {
            
@@ -39,7 +38,7 @@ const GetMessageByUser = () => {
             <div>
                 <h3>Vos demandes :</h3>
                 {messageByID.map((message, i) => {
-                console.log(message)
+                
                     return(
                     
                         <div key={i}>

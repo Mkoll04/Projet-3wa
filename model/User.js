@@ -78,7 +78,7 @@ class User {
             return
         }
         try {
-            // on verrifie si l'email existe en BDD
+            // on verifie si l'email existe en BDD
             const emailPresent = await this._emailExist(email)
         
             // error a la verrification de l'email
@@ -94,18 +94,18 @@ class User {
             // On hash le password
             const mpdHash = await bcrypt.hash(password,this.saltRounds)
             
-            // on creer la liste des params pour add user
+            // on cree la liste des params pour add user
             const paramsSql = [ email, mpdHash, first_name, last_name]
             
             // on fait la requete
             const createUser = await this.asyncQuery(sql,paramsSql)
             
-            // on creer le panier de l'utilisateur
+            // on cree le panier de l'utilisateur
             const sqlCreateCart = 'INSERT INTO orders (users_id) VALUES (?)'
             await this.asyncQuery(sqlCreateCart,createUser.insertId)
             
             
-            // on retourn la reponse
+            // on retourne la reponse
             return {response:createUser}
         }catch(err){
             console.log(err)
@@ -127,19 +127,6 @@ class User {
             
         }
     }
-    
-    // async getAllUser(){
-    //     const sql = "SELECT * FROM users"
-        
-    //     try {
-    //         const result = await this.asyncQuery(sql)
-    //         return result
-    //     } catch(err){
-    //         console.log(err)
-    //         if(err) throw err
-            
-    //     }
-    // }
     
     async getUserByID({id}){
         const sql = "SELECT email,password,first_name,last_name FROM users WHERE id = ?"

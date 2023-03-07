@@ -1,8 +1,31 @@
 /********GOOGLE FONT**********/
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Julius+Sans+One&family=Monda&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Macondo&family=Tilt+Prism&display=swap');
+
+
+    /*font-family: 'Macondo', cursive;*/
+
+    /*font-family: 'Tilt Prism', cursive;*/
+/********Général**********/
+
+
+h1, h2, h3, h4{
+  
+font-family: 'Tilt Prism', cursive;
+  
+}
+
+body{
+  font-family: 'Macondo', cursive;
+}
+
+hr{
+  border:solid 0.1rem black;
+}
+
 
 /********NAV-HEADER**********/
+
 
 header {
   
@@ -11,8 +34,13 @@ header {
   background-color:rgba(224, 224, 235, 1);
   justify-content:space-between;
   width:100%;
-  font-family: 'Cinzel', serif;
+  font-family: 'Macondo', cursive;
  
+}
+header h1{
+  display:inline-block;
+  text-align:center;
+  
 }
 
 header .header-logo{
@@ -207,6 +235,21 @@ header{
 }
 
 
+/********HOME**********/
+
+.home{
+  background-image:url('../public/images/kyoto-scene.JPG');
+  background-repeat: no-repeat;
+  
+}
+
+.article-home p {
+  width:33%;
+}
+
+
+
+
 /********CARDS**********/
 
 .image-product {
@@ -249,6 +292,7 @@ header{
   
 .card-wrapper{
   display:flex;
+  flex-wrap:wrap;
 }
   
 }

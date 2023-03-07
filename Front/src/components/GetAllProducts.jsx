@@ -7,33 +7,32 @@ import AddProducts from "./AddProducts.jsx"
 
 const GetAllProducts = () => {
     
-    // const [getProducts, setGetProducts] = useState([])
+   
     const [state, dispatch] = useContext(StoreContext)
     
     useEffect(() => {
         axios.get(`${BASE_URL}/getAllProducts`)
         .then(res => {
             dispatch({type:"INIT_PRODUCTS",payload:res.data.data.result})
-            //setGetProducts(res.data.data.result)
+            
         })
         .catch(err => console.log(err))
     },[dispatch])
-    console.log(state)
     
     const deleteProducts =  (id) => {
-        console.log(id)
      axios.post(`${BASE_URL}/deleteProductsByID`,{id})
      .then(
          dispatch({type:"UPDATE_PRODUCT",payload:state.allProducts.filter(e => e.id !== id)}))
         
     }
+    console.log(state)
     return (
         <div>
             <AddProducts />
             <div className="wrapper">
             
                 {state.allProducts.map((product, i) => {
-                console.log(product)
+                
                     return(
                     
                         <div key={i}>

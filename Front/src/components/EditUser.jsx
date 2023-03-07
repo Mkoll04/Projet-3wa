@@ -24,7 +24,6 @@ const EditUser = () => {
     useEffect(() => {
         axios.post(`${BASE_URL}/getUserById`,{id})
             .then(res =>{ 
-                console.log({res,id})
                 const data = res.data.data[0]
                 data.password = ""
                 data.id = id
@@ -42,7 +41,7 @@ const EditUser = () => {
             })
             .catch(err => console.log(err))
     },[id])
-    console.log(state)
+    
     const handleChange = (e) => {
         const {name, value} = e.target
         
@@ -94,7 +93,7 @@ const EditUser = () => {
         })
         
     } 
-    console.log(state)
+    
     
     return (
         <Fragment>

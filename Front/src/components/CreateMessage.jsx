@@ -16,7 +16,7 @@ const RegisterUser = () => {
         
         
     })
-    console.log(state)
+    
     
     const handleChange = (e) => {
         const {name, value} = e.target

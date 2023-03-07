@@ -59,7 +59,6 @@ const Login = () => {
             })
     }
     
-    console.log(state)
     
     return(
         <Fragment>

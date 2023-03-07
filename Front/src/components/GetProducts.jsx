@@ -7,18 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 const GetProducts = () => {
     const navigate = useNavigate();
-    // const [getProducts, setGetProducts] = useState([])
     const [state, dispatch] = useContext(StoreContext)
     
     useEffect(() => {
         axios.get(`${BASE_URL}/getAllProducts`)
         .then(res => {
             dispatch({type:"INIT_PRODUCTS",payload:res.data.data.result})
-            //setGetProducts(res.data.data.result)
         })
         .catch(err => console.log(err))
     },[dispatch])
-    console.log(state)
   
     const addProductsToCart = (users_id,products) => {
         axios.post(`${BASE_URL}/addToCart`,{users_id,products_id:products.id})
@@ -33,7 +30,7 @@ const GetProducts = () => {
                 console.log(err)
             })
   }
-console.log(state)
+
     return (
         <div className="card-wrapper">
         
